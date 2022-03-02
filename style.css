@@ -1,0 +1,87 @@
+body{
+    font-family: 'Alegreya Sans', sans-serif;
+}
+
+.header{
+    height: 30px;
+    margin: 0px 50px 10px 50px;
+    background-color: rgb(182, 132, 230);
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 20px;
+    border-radius: 10px;
+}
+
+.header-element{
+    margin-left: 40px;
+}
+
+a {
+    color: rgb(33, 28, 37);
+    text-decoration: none;
+}
+
+a:hover {
+    color:rgb(68, 50, 85); 
+    text-decoration:none; 
+    cursor:pointer;  
+}
+
+#info-header{
+    height: 400px;
+    width: 100%;
+    margin: 10px;
+    margin-top: 30px;
+}
+
+#student-photo{
+    width: fit-content;
+}
+
+img{
+    max-width: auto;
+    max-height: 400px;
+    display: block;
+}
+
+.inline{
+    float: left;
+}
+
+#pwr-logo{
+    width: 40px;
+    height: 40px;
+    display: inline;
+    margin-left: 5px;
+}
+
+#content{
+    margin: 50px;
+    padding: 10px;
+    background-color: rgb(182, 132, 230);
+    color: rgb(33, 28, 37);
+    border-radius: 10px;
+}
+
+.info-paragraph{
+    padding: 5px;
+}
+
+#plan-container{
+    height: 500px;
+    margin: 50px 50px 0px 50px;
+}
+
+.plan-element{
+    background-color: rgb(98, 75, 119);
+    color: rgb(211, 199, 223);
+    width: 16%;
+    margin: 0 1% 0 1%;
+    padding: 1%;
+    height: fit-content;
+    border-radius: 10px;
+}
+
+li{
+    margin-top: 10px;
+}
