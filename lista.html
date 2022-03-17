@@ -1,0 +1,39 @@
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <link href='http://fonts.googleapis.com/css?family=Alegreya+Sans&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan</title>
+</head>
+<body>
+    <div class="header">
+        <div class="inline header-element">
+            <a href="index.html">Strona główna</a>
+        </div>
+        <div class="inline header-element">
+            <a href="plan.html">Plan</a>
+        </div>
+        <div class="inline header-element">
+            <a href="lista.html">Lista</a>
+        </div>
+    </div>
+    <div id="list-content">
+        <div>
+            <label for="add-list-element-input">Wpisz nowy element listy:</label>
+            <input type="text" id="add-list-element-input" name="add-list-element-input">
+            <button id="add-list-element-button" class="base-button">Dodaj</button>
+            <button id="restore-list-element-button" class="base-button">Cofnij</button>
+        </div>
+        <div class="list-container">
+            <p>Lista rzeczy do zrobienia:</p>
+            <div id="list">
+            </div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="list.js"></script>
+    <script src="list-jquery.js"></script>
+</body>
+</html>

@@ -82,6 +82,58 @@ img{
     border-radius: 10px;
 }
 
+.list-element{
+    display: inline-block;
+}
+
+.delete-button{
+    margin-left: 5px;
+}
+
 li{
     margin-top: 10px;
+}
+
+#list-content{
+    margin: 50px 50px 0px 50px;
+}
+
+.base-button{
+    background-color: rgb(182, 132, 230);
+    border-color: rgb(182, 132, 230);
+    color: rgb(33, 28, 37);
+    border-radius: 5px;
+    margin-left: 5px;
+}
+
+.base-button:hover{
+    border-color: rgb(98, 75, 119);
+    color:rgb(68, 50, 85); 
+    text-decoration: none; 
+    cursor: pointer;
+}
+
+#add-list-element-input{
+    border-radius: 5px;
+}
+
+#add-list-element-input:focus{
+    outline: none;
+    border-color: rgb(182, 132, 230);
+}
+
+.delete-button{
+    background-color: rgb(182, 132, 230);
+    border-color: rgb(182, 132, 230);
+    color: rgb(33, 28, 37);
+    border-radius: 5px;
+    margin-left: 5px;
+    font-size: 7px;
+}
+
+.delete-button:hover{
+    border-color: rgb(98, 75, 119);
+    color:rgb(68, 50, 85); 
+    text-decoration: none; 
+    cursor: pointer;
 }
