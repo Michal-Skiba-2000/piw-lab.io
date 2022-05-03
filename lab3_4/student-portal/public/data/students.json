@@ -1,0 +1,47 @@
+{
+    "counter": 6,
+    "students": [
+        {
+            "id": 1,
+            "name": "Jan",
+            "lastName": "Kowalski",
+            "email": "123456@student.pwr.edu.pl",
+            "hashedPassword": 436884319
+        },
+        {
+            "id": 2,
+            "name": "Piotr",
+            "lastName": "Nowak",
+            "email": "234567@student.pwr.edu.pl",
+            "hashedPassword": 436884319
+        },
+        {
+            "id": 3,
+            "name": "Jakub",
+            "lastName": "Moder",
+            "email": "345678@student.pwr.edu.pl",
+            "hashedPassword": 436884319
+        },
+        {
+            "id": 4,
+            "name": "Andrzej",
+            "lastName": "Grabowski",
+            "email": "456789@student.pwr.edu.pl",
+            "hashedPassword": 436884319
+        },
+        {
+            "id": 5,
+            "name": "Nikola",
+            "lastName": "Pruna",
+            "email": "567890@student.pwr.edu.pl",
+            "hashedPassword": 436884319
+        },
+        {
+            "id": 6,
+            "name": "Ola",
+            "lastName": "Piątek",
+            "email": "678901@student.pwr.edu.pl",
+            "hashedPassword": 436884319
+        }
+    ]
+}

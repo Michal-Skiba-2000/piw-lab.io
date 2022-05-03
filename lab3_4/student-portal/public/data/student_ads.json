@@ -1,0 +1,47 @@
+{
+    "counter": 6,
+    "student_ads": [
+        {
+            "id": 1,
+            "student": 1,
+            "description": "Szukam pary na ucisw2 wtorek TP 8:00-11:00",
+            "tags": ["projekt", "sugier", "para"],
+            "subject": "ucisw2"
+        },
+        {
+            "id": 2,
+            "student": 2,
+            "description": "Szukam pary na ucisw2 czwartek TN 12:15-15:15",
+            "tags": ["projekt", "mazurkiewicz"],
+            "subject": "ucisw2"
+        },
+        {
+            "id": 3,
+            "student": 3,
+            "description": "Szukam dwóch osób do projektu zespołowego",
+            "tags": ["projekt", "patronik", "wolontariat"],
+            "subject": "pz"
+        },
+        {
+            "id": 4,
+            "student": 4,
+            "description": "Ktoś chętny, żeby wziąć futsal razem w tym semetrze na wf?",
+            "tags": ["futsal", "piłeczka"],
+            "subject": "wf"
+        },
+        {
+            "id": 5,
+            "student": 5,
+            "description": "Szukam osoby do wspólnego robienia list z si",
+            "tags": ["wspołpraca", "apesstrongtogether"],
+            "subject": "si"
+        },
+        {
+            "id": 6,
+            "student": 6,
+            "description": "Ktoś chce coś robić razem do Nikodema na projekt zespołowy? Mogę się dostosować",
+            "tags": ["projekt", "nikodem", "wolontariat", "pomocy"],
+            "subject": "pz"
+        }
+    ]
+}

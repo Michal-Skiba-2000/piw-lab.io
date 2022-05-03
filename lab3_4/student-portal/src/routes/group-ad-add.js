@@ -7,13 +7,9 @@ export default class GroupAdAdd extends React.Component {
     constructor(props) {
         super(props);
 
-        let availableStudents = getStudents();
-        const loggedStudent = getLoggedStudent();
-        availableStudents = this.deleteStudent(availableStudents, loggedStudent.id);
-
         this.state = {
-            loggedStudent: loggedStudent,
-            availableStudents: availableStudents,
+            loggedStudent: null,
+            availableStudents: [],
             student2: '',
             student3: '',
             name: '',
@@ -36,6 +32,17 @@ export default class GroupAdAdd extends React.Component {
         this.setDescription = this.setDescription.bind(this);
         this.setSubject = this.setSubject.bind(this);
         this.submitForm = this.submitForm.bind(this);
+    }
+
+
+    async componentDidMount() {
+        const loggedStudent = await getLoggedStudent();
+        let availableStudents = await getStudents();
+        availableStudents = this.deleteStudent(availableStudents, loggedStudent.id);
+        this.setState({
+            loggedStudent: loggedStudent,
+            availableStudents: availableStudents,
+        });
     }
 
 
@@ -112,7 +119,7 @@ export default class GroupAdAdd extends React.Component {
         return isValid;
     }
 
-    submitForm() {
+    async submitForm() {
         const isDescriptionValid = this.setDescription(this.state.description);
         const isSubjectValid = this.setSubject(this.state.subject);
         const isNameValid = this.setName(this.state.name);
@@ -129,9 +136,7 @@ export default class GroupAdAdd extends React.Component {
                 if( student3 ) students.push(student3);
             }
             
-            createGroupAd(this.state.name, students, this.state.description, this.state.tags.trim().split(' '), this.state.subject);
-
-            // console.log('tu nie dochodzę');
+            await createGroupAd(this.state.name, students, this.state.description, this.state.tags.trim().split(' '), this.state.subject);
             window.location.href = '/group-ad';
         }
 
@@ -145,10 +150,7 @@ export default class GroupAdAdd extends React.Component {
                 <div>
                     <label className="input-label" htmlFor="">Student 1: </label>
                     <select name="logged-student" id="logged-student" disabled>
-                        <option value={this.state.loggedStudent.id}>{this.state.loggedStudent.name} {this.state.loggedStudent.lastName}</option>
-                        {this.state.availableStudents.map(student => (
-                            <option key={student.id} value={student.id}>{student.name} {student.lastName}</option>
-                        ))}
+                        {this.state.loggedStudent? <option value={this.state.loggedStudent.id}>{this.state.loggedStudent.name} {this.state.loggedStudent.lastName}</option>: null}
                     </select>
                 </div>
                 <div>

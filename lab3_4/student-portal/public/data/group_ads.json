@@ -1,0 +1,21 @@
+{
+    "counter": 2,
+    "group_ads": [
+        {
+            "id": 1,
+            "name": "Alpha team",
+            "students": [1, 2, 3],
+            "description": "Szukamy trzech osób do ogarnięcia frontu w naszej apce, preferujemy angulara",
+            "tags": ["projekt", "nikodem", "frontend", "angular"],
+            "subject": "pz"
+        },
+        {
+            "id": 2,
+            "name": "Wyspiarze",
+            "students": [4, 5, 6],
+            "description": "Potrzebujemy do zespołu mistrza który skonfiguruje nam arduino i raspberry, żeby nasza apka miała dostęp do pomiarów z czujników",
+            "tags": ["projekt", "serafin", "patronik", "embedded", "arduino", "raspberrypi"],
+            "subject": "pz"
+        }
+    ]
+}

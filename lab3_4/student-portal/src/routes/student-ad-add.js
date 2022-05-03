@@ -47,7 +47,7 @@ function isFormValid(descriptionValidator, subjectValidator){
     return descriptionValidator.isValid && subjectValidator.isValid
 }
 
-function submitForm(descriptionValidator, setDescriptionValidator, subjectValidator, setSubjectValidator, tags, setShouldReturn) {
+async function submitForm(descriptionValidator, setDescriptionValidator, subjectValidator, setSubjectValidator, tags, setShouldReturn) {
     descriptionValidator = getDescriptionValidator(descriptionValidator.value)
     setDescriptionValidator(descriptionValidator);
     subjectValidator = getSubjectValidator(subjectValidator.value);
@@ -57,7 +57,7 @@ function submitForm(descriptionValidator, setDescriptionValidator, subjectValida
         return;
     }
 
-    createStudentAd(descriptionValidator.value, tags.trim().split(' '), subjectValidator.value);
+    await createStudentAd(descriptionValidator.value, tags.trim().split(' '), subjectValidator.value);
     setShouldReturn(true);
 }
 

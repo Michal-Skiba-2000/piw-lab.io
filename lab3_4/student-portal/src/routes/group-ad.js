@@ -1,43 +1,55 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { getStudentsAds } from "../database/service/studentAdService";
+import { getGroupsAds } from "../database/service/groupAdService";
 import { areTagsMatching } from "../utils";
-import "./student-ad.scss"
 
-function getFilteredStudentsAds(searchDescriptionExpression, searchTagsExpression, searchSubjectExpression, studentsAds) {
-    return studentsAds.filter( studentAd => {
-        return studentAd.description.toLowerCase().includes(searchDescriptionExpression.toLowerCase());
-    }).filter( studentAd => {
-        return areTagsMatching(searchTagsExpression.split(" "), studentAd.tags)
-    }).filter( studentAd => {
-        return studentAd.subject.toLowerCase().includes(searchSubjectExpression.toLowerCase());
-    }).map( (studentAd, i) => {
+
+function getFilteredStudentsAds(searchDescriptionExpression, searchTagsExpression, searchSubjectExpression, groupsAds) {
+    return groupsAds.filter( groupAd => {
+        return groupAd.description.toLowerCase().includes(searchDescriptionExpression.toLowerCase());
+    }).filter( groupAd => {
+        return areTagsMatching(searchTagsExpression.split(" "), groupAd.tags)
+    }).filter( groupAd => {
+        return groupAd.subject.toLowerCase().includes(searchSubjectExpression.toLowerCase());
+    }).map( (groupAd, i) => {
         let tags = "";
-        studentAd.tags.forEach(tag => {
+        groupAd.tags.forEach(tag => {
             tags += tag + " "       
         });
         return (
             <div className="student-ad-element" key={i}>
-                <p><b>Imię i nazwisko studenta: </b>{studentAd.student.name} {studentAd.student.lastName}</p>
-                <p><b>Opis: </b>{studentAd.description}</p>
-                <p><b>Przedmiot: </b>{studentAd.subject}</p>
+                <p><b>Nazwa grupy: </b>{groupAd.name}</p>
+                <p><b>Członkowie grupy: </b>{groupAd.studentsText}</p>
+                <p><b>Opis: </b>{groupAd.description}</p>
+                <p><b>Przedmiot: </b>{groupAd.subject}</p>
                 <p><b>Tagi: </b>{tags}</p>
             </div>
         )
     })
 }
 
-export default function StudentAd() {
-    const [studentsAds] = useState(getStudentsAds());
+
+export default function GroupAd() {
+    const [groupsAds, setGroupsAds] = useState([]);
     const [searchDescriptionExpression, setSearchDescriptionExpression] = useState("");
     const [searchTagsExpression, setSearchTagsExpression] = useState("");
     const [searchSubjectExpression, setSearchSubjectExpression] = useState("");
     const [shouldRedirectToCreate, setShouldRedirectToCreate] = useState(false);
 
+    useEffect(() => {
+        const getAndSetGroupsAds = async () => {
+          const groupAd = await getGroupsAds();
+          setGroupsAds(groupAd);
+        }
+
+        getAndSetGroupsAds()
+          .catch(console.error);
+    }, []);
+
     const navigate = useNavigate();
-    React.useEffect(() => {
-        if (shouldRedirectToCreate) navigate("/student-ad-add");
+    useEffect(() => {
+        if (shouldRedirectToCreate) navigate("/group-ad-add");
     });
     
     return (
@@ -58,7 +70,7 @@ export default function StudentAd() {
                 <button className="student-add-ad-button" onClick={() => setShouldRedirectToCreate(true)}>Dodaj ogłoszenie</button>
             </div>
             <div className="student-ad-container">
-                {getFilteredStudentsAds(searchDescriptionExpression, searchTagsExpression, searchSubjectExpression, studentsAds)}
+                {getFilteredStudentsAds(searchDescriptionExpression, searchTagsExpression, searchSubjectExpression, groupsAds)}
             </div>
         </div>
     );
