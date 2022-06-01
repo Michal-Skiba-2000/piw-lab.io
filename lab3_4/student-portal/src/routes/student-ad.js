@@ -3,6 +3,9 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { getStudentsAds } from "../database/service/studentAdService";
 import { areTagsMatching } from "../utils";
+import { isUserLoggedIn } from '../App.js';
+import { auth } from '../firebase/init';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import "./student-ad.scss"
 
 function getFilteredStudentsAds(searchDescriptionExpression, searchTagsExpression, searchSubjectExpression, studentsAds) {
@@ -34,6 +37,22 @@ export default function StudentAd() {
     const [searchTagsExpression, setSearchTagsExpression] = useState("");
     const [searchSubjectExpression, setSearchSubjectExpression] = useState("");
     const [shouldRedirectToCreate, setShouldRedirectToCreate] = useState(false);
+    const [user, loading] = useAuthState(auth);
+
+    useEffect(() => {
+        const navigateUser = async () => {
+          const loggedIn = await isUserLoggedIn(user, loading);
+          if( loggedIn ){
+            navigate("/student-ad");
+          }
+          else{
+            navigate("/login");
+          }
+        }
+
+        navigateUser()
+          .catch(console.error);
+      }, []);
 
     useEffect(() => {
         const getAndSetStudentsAds = async () => {

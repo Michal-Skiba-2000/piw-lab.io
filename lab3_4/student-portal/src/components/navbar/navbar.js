@@ -2,11 +2,26 @@ import React from 'react';
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getLoggedStudent } from '../../database/service/studentService';
+import { auth } from '../../firebase/init';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { logout } from '../../firebase/users';
 import "./navbar.scss";
+
+async function Logout(user, setLoggedStudent){
+  if (user){
+    logout();
+  }
+  else{
+    localStorage.removeItem('loggedStudentId');
+    setLoggedStudent(null);
+  }
+}
 
 export default function Navbar() {
   const [currentClicked, setCurrentClicked] = useState(window.location.pathname);
   const [loggedStudent, setLoggedStudent] = useState(null);
+
+  const [user, loading, error] = useAuthState(auth);
 
   useEffect(() => {
     const getAndSetLoggedStudent = async () => {
@@ -21,7 +36,7 @@ export default function Navbar() {
   return (
   <div>
   {
-    loggedStudent ?
+    loggedStudent || user ?
     <div className="navbar-container">
       <div className="navbar-element">
         <Link
@@ -57,13 +72,14 @@ export default function Navbar() {
           <Link
             className="link-element"
             to="/login"
-            onClick={() => {localStorage.removeItem('loggedStudentId'); setLoggedStudent(null);}}
+            onClick={() => Logout(user, setLoggedStudent)}
           >
               Logout
           </Link>
       </div>
       <div className="navbar-element-student-info">
-          <p>{loggedStudent.name} {loggedStudent.lastName}</p>
+          {loggedStudent? <p>{loggedStudent.name} {loggedStudent.lastName}</p>: null}
+          {user? <p>{ user.displayName }</p>: null}
       </div>
     </div>:
 
