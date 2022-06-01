@@ -1,25 +1,32 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { getLoggedStudent } from "./database/service/studentService";
+import { auth } from './firebase/init';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 
-// mocking logged user
-async function isUserLoggedIn() {
+export const isUserLoggedIn = async (user) => {
+  if (user) {
+    return true
+  }
+
   const student = await getLoggedStudent();
   if (student) {
     return true;
-  } else {
-    return false;
   }
+
+  return false;
 }
 
 
 function App() {
   const navigate = useNavigate();
 
+  const [user] = useAuthState(auth);
+
   useEffect(() => {
     const navigateUser = async () => {
-      const loggedIn = await isUserLoggedIn();
+      const loggedIn = await isUserLoggedIn(user);
       if( loggedIn ){
         navigate("/student-ad");
       }
@@ -27,7 +34,6 @@ function App() {
         navigate("/login");
       }
     }
-
     navigateUser()
       .catch(console.error);
   }, []);
